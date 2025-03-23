@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import './App.css'
+import Article from './components/Article'
+import articleData from './constants/articleData'
 
 // Импортиране на изображения за пейзажи през прозорци
 const woodPlanksBackground = "https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?q=80&w=2070"; // Дървен фон
@@ -56,6 +58,7 @@ function App() {
   
   const [currentImage, setCurrentImage] = useState(0);
   const [email, setEmail] = useState('');
+  const [selectedArticle, setSelectedArticle] = useState(null);
   
   // Refs за проследяване на видимостта
   const featuresRef = useRef(null);
@@ -70,6 +73,16 @@ function App() {
   const rightLandscapeY = useTransform(scrollY, [0, 1000], [0, -100]);
   const archOpacity = useTransform(scrollY, [0, 100], [1, 0.8]);
   const contentScale = useTransform(scrollY, [0, 100], [1, 0.98]);
+  
+  // Функция за отваряне на статия
+  const openArticle = (articleId) => {
+    setSelectedArticle(articleData[articleId]);
+  };
+  
+  // Функция за затваряне на статия
+  const closeArticle = () => {
+    setSelectedArticle(null);
+  };
   
   // Ефект за автоматично сменяне на изображенията в карусела
   useEffect(() => {
@@ -242,7 +255,12 @@ function App() {
             initial="hidden"
             animate={isInView.features ? "visible" : "hidden"}
           >
-            <motion.div className="feature wooden-feature" variants={fadeInUp} style={{ backgroundImage: `url(${woodPlanksLight})` }}>
+            <motion.div 
+              className="feature wooden-feature" 
+              variants={fadeInUp} 
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+              onClick={() => openArticle('mountains')}
+            >
               <div className="feature-icon-container">
                 <motion.div 
                   className="feature-icon"
@@ -257,7 +275,12 @@ function App() {
               <p>Спиращи дъха планински вериги и върхове, покрити със сняг през зимата и с буйна зеленина през夏天</p>
             </motion.div>
             
-            <motion.div className="feature wooden-feature" variants={fadeInUp} style={{ backgroundImage: `url(${woodPlanksLight})` }}>
+            <motion.div 
+              className="feature wooden-feature" 
+              variants={fadeInUp} 
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+              onClick={() => openArticle('lakes')}
+            >
               <div className="feature-icon-container">
                 <motion.div 
                   className="feature-icon"
@@ -272,7 +295,12 @@ function App() {
               <p>Прозрачни води, отразяващи небето, заобиколени от величествени планини и пищна растителност</p>
             </motion.div>
             
-            <motion.div className="feature wooden-feature" variants={fadeInUp} style={{ backgroundImage: `url(${woodPlanksLight})` }}>
+            <motion.div 
+              className="feature wooden-feature" 
+              variants={fadeInUp} 
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+              onClick={() => openArticle('forests')}
+            >
               <div className="feature-icon-container">
                 <motion.div 
                   className="feature-icon"
@@ -500,6 +528,16 @@ function App() {
           </div>
         </div>
       </footer>
+      
+      {/* Модален прозорец за статиите */}
+      <AnimatePresence>
+        {selectedArticle && (
+          <Article 
+            article={selectedArticle} 
+            onClose={closeArticle}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

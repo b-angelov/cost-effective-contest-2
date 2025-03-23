@@ -1,0 +1,1580 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Основни стилове според съвременните практики */
+:root {
+  --wood-dark: #3E2723;
+  --wood-medium: #6D4C41;
+  --wood-light: #A1887F;
+  --wood-accent: #8D6E63;
+  --wood-grain: #5D4037;
+  --vivid-accent: #FF5722;
+  --vivid-accent-light: #FFAB91;
+  --text-color: #212121;
+  --text-light: #ffffff;
+  --bg-color: #f5f5f5;
+  
+  /* Променливи за анимация */
+  --animation-duration: 0.4s;
+  --animation-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --animation-scale: 0.98;
+  --transition-all: all 0.3s var(--animation-easing);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  color: #4A3328;
+  overflow-x: hidden;
+  background-color: #F9F5F0;
+}
+
+h1, h2 {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+}
+
+/* Основен контейнер */
+.landing-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Реален дървен фон */
+.wood-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.wood-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(1.1) contrast(1.2);
+}
+
+/* Ефект за дървесина */
+.wood-texture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Дървени колони */
+.pillar {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 15vw; /* По-широки колони */
+  z-index: 5;
+  transition: all 0.5s ease;
+  overflow: visible;
+}
+
+.left-pillar {
+  left: 0;
+}
+
+.right-pillar {
+  right: 0;
+}
+
+/* Тяло на колоната със спирална текстура */
+.pillar-body {
+  position: absolute;
+  top: 120px;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid #3A271B;
+  overflow: hidden;
+}
+
+.left-pillar .pillar-body {
+  border-right: 4px solid #2A1A12;
+  transform: perspective(500px) rotateY(-5deg);
+}
+
+.right-pillar .pillar-body {
+  border-left: 4px solid #2A1A12;
+  transform: perspective(500px) rotateY(5deg);
+}
+
+/* Спирална декорация на колоната */
+.pillar-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-spiral.png');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  opacity: 0.5;
+  animation: spiralRotate 40s linear infinite;
+}
+
+@keyframes spiralRotate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 1000px;
+  }
+}
+
+/* Капител на колоната (горната част) */
+.pillar-capital {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  border: 2px solid #251811;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.left-pillar .pillar-capital {
+  border-right: 4px solid #251811;
+  transform: perspective(500px) rotateX(5deg) rotateY(-5deg);
+}
+
+.right-pillar .pillar-capital {
+  border-left: 4px solid #251811;
+  transform: perspective(500px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Основа на колоната (долната част) */
+.pillar-base {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  border: 2px solid #251811;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.left-pillar .pillar-base {
+  border-right: 4px solid #251811;
+  transform: perspective(500px) rotateX(-5deg) rotateY(-5deg);
+}
+
+.right-pillar .pillar-base {
+  border-left: 4px solid #251811;
+  transform: perspective(500px) rotateX(-5deg) rotateY(5deg);
+}
+
+/* Сенки за капитела и основата, за да се придаде дълбочина */
+.capital-shadow, .base-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Ефект при hover */
+.pillar-hover .pillar-body {
+  filter: brightness(1.1) contrast(1.2);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.pillar-hover .pillar-capital,
+.pillar-hover .pillar-base {
+  filter: brightness(1.15);
+  box-shadow: 0 0 25px rgba(100, 70, 20, 0.5);
+}
+
+.left-pillar.pillar-hover .pillar-body {
+  transform: perspective(500px) rotateY(-8deg);
+}
+
+.right-pillar.pillar-hover .pillar-body {
+  transform: perspective(500px) rotateY(8deg);
+}
+
+.left-pillar.pillar-hover .pillar-capital {
+  transform: perspective(500px) rotateX(8deg) rotateY(-8deg);
+}
+
+.right-pillar.pillar-hover .pillar-capital {
+  transform: perspective(500px) rotateX(8deg) rotateY(8deg);
+}
+
+.left-pillar.pillar-hover .pillar-base {
+  transform: perspective(500px) rotateX(-8deg) rotateY(-8deg);
+}
+
+.right-pillar.pillar-hover .pillar-base {
+  transform: perspective(500px) rotateX(-8deg) rotateY(8deg);
+}
+
+/* Ефект за ръбовете на дървените елементи */
+.wooden-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Контейнер за съдържанието */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(249, 245, 240, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  perspective: 1000px;
+  border: 1px solid rgba(42, 26, 18, 0.2);
+}
+
+/* Заглавие и подзаглавие */
+.header-content {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(62, 42, 30, 0.3);
+}
+
+h1 {
+  font-size: 4.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #2A1A12;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #5D4037;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.lead-text {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #3E2A1E;
+}
+
+/* Секция с характеристики */
+.features {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 60px 0;
+  perspective: 1000px;
+}
+
+.feature {
+  flex: 1;
+  text-align: center;
+  padding: 35px 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(62, 42, 30, 0.2);
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Стил за дървените характеристики */
+.wooden-feature {
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.wooden-feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 250, 240, 0.85);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.feature:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon-container {
+  position: relative;
+  margin: 0 auto 25px;
+  width: 90px;
+  height: 90px;
+}
+
+.feature-icon {
+  position: relative;
+  font-size: 3rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.feature-icon-bg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 80px;
+  height: 80px;
+  background-color: rgba(93, 64, 55, 0.15);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.feature h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #3E2A1E;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+}
+
+.feature p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #5D4037;
+}
+
+/* CTA секция */
+.cta-section {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 45px;
+  color: #FFF;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.35rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(62, 42, 30, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Дървен бутон */
+.wooden-button {
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #2A1A12;
+}
+
+.wooden-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(62, 42, 30, 0.7);
+  z-index: 1;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(62, 42, 30, 0.4);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-arrow {
+  margin-left: 12px;
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Отзиви */
+.testimonials {
+  margin: 70px 0 40px;
+  padding: 40px;
+  border-radius: 12px;
+  border-left: 5px solid #5D4037;
+  position: relative;
+  overflow: hidden;
+}
+
+.wooden-testimonial {
+  background-size: cover;
+  background-position: center;
+}
+
+.wooden-testimonial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 250, 240, 0.85);
+  z-index: -1;
+}
+
+blockquote {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: #3E2A1E;
+  position: relative;
+  padding: 0 40px;
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  font-size: 6rem;
+  color: rgba(62, 42, 30, 0.2);
+  font-family: Georgia, serif;
+}
+
+blockquote footer {
+  margin-top: 20px;
+  font-weight: 700;
+  text-align: right;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+/* Дървена лента в долната част */
+.wood-strip {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 5;
+  border-top: 3px solid #251811;
+  border-bottom: 3px solid #251811;
+  box-shadow: 0 -8px 20px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+.main-footer {
+  background-size: cover;
+  background-position: center;
+  color: #FFF;
+  padding: 35px 0;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ефект за панорамно изображение на горски пейзаж */
+.forest-panorama-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(42, 26, 18, 0.5);
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Странични колони с горски пейзаж */
+.forest-side-pillars {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 15vw;
+  background-size: cover;
+  background-position: center;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.forest-side-pillars.left {
+  left: 0;
+  background-position: left center;
+}
+
+.forest-side-pillars.right {
+  right: 0;
+  background-position: right center;
+}
+
+.forest-side-pillars::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+  z-index: 1;
+}
+
+.forest-side-pillars.right::before {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-content p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-link {
+  color: #FFF;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #FFDB9D;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #FFDB9D;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Адаптивен дизайн */
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  .arch-top,
+  .wooden-arch {
+    left: 15vw;
+    width: 70vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .features {
+    flex-direction: column;
+  }
+  
+  .arch-top,
+  .wooden-arch {
+    left: 12vw;
+    width: 76vw;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .arch-top,
+  .wooden-arch {
+    left: 8vw;
+    width: 84vw;
+  }
+  
+  .content-container {
+    padding: 20px;
+  }
+  
+  .lead-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .arch-top,
+  .wooden-arch {
+    left: 5vw;
+    width: 90vw;
+  }
+  
+  .wooden-arch {
+    padding: 80px 15px 20px;
+  }
+  
+  .feature {
+    padding: 25px 15px;
+  }
+  
+  .testimonials {
+    padding: 25px;
+  }
+  
+  blockquote {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+}
+
+/* Специални ефекти */
+.content-container {
+  transform-origin: center top;
+  will-change: transform;
+}
+
+.animated-element {
+  will-change: transform, opacity;
+}
+
+/* Дървена арка */
+.arch-top {
+  position: fixed;
+  top: 0;
+  left: 15vw; /* Изравнено с колоните */
+  width: 70vw; /* Изравнено с колоните */
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  border-bottom: 5px solid #251811;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Основна структура на арката */
+.wooden-arch {
+  position: relative;
+  min-height: 100vh;
+  width: 70vw; /* Изравнено с колоните */
+  margin: 0 auto;
+  padding: 90px 40px 40px;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+/* Ефект за ръбовете на дървените елементи - статична версия за ненаследени елементи */
+.wooden-edge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Прозорец с изглед към природни пейзажи */
+.window-view {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 18vw;
+  z-index: 5;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window-view.left {
+  left: 0;
+}
+
+.window-view.right {
+  right: 0;
+}
+
+.window-frame {
+  width: 100%;
+  height: 90%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  border: 12px solid transparent;
+  background-clip: padding-box;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.5s ease;
+}
+
+.window-view.left .window-frame {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transform: perspective(1000px) rotateY(5deg);
+}
+
+.window-view.right .window-frame {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  transform: perspective(1000px) rotateY(-5deg);
+}
+
+.window-landscape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.5s ease;
+  transform: scale(1.1);
+}
+
+.window-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.window-reflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.7;
+}
+
+/* Ефект при hover на прозорец */
+.window-hover .window-frame {
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+.window-hover .window-landscape {
+  transform: scale(1.15);
+}
+
+.window-view.left.window-hover .window-frame {
+  transform: perspective(1000px) rotateY(8deg);
+}
+
+.window-view.right.window-hover .window-frame {
+  transform: perspective(1000px) rotateY(-8deg);
+}
+
+/* Футър с панорамен изглед */
+.main-footer.panoramic-view {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  height: 80vh; /* Увеличаване на височината за карусела */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Разпределяне на пространството между карусела и футър линковете */
+}
+
+.footer-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.footer-window-frame {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-top: 12px solid;
+  border-image: linear-gradient(to right, #3E2723, #A1887F, #3E2723) 1;
+}
+
+.footer-landscape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center bottom;
+  transition: all 0.5s ease;
+  opacity: 0.7; /* Намаляване на прозрачността за по-добър контраст с карусела */
+}
+
+/* Карусел във футъра */
+.footer-carousel {
+  position: relative;
+  z-index: 10;
+  margin: 40px auto 20px;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.footer-carousel .carousel-container {
+  border-width: 15px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.footer-carousel .wooden-frame-overlay {
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+/* Настройки за адаптивен дизайн на футъра и карусела */
+@media (max-width: 992px) {
+  .main-footer.panoramic-view {
+    height: 90vh;
+  }
+  
+  .footer-carousel {
+    width: 90%;
+  }
+  
+  .footer-carousel .carousel-container {
+    height: 350px;
+    border-width: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-footer.panoramic-view {
+    height: 100vh;
+  }
+  
+  .footer-carousel {
+    width: 95%;
+  }
+  
+  .footer-carousel .carousel-container {
+    height: 300px;
+    border-width: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-carousel .carousel-container {
+    height: 250px;
+    border-width: 8px;
+  }
+  
+  .footer-carousel .carousel-button {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Стилове за контраст на текст върху пейзажите */
+.light-text {
+  color: #FFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.footer-content {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  padding: 25px 0;
+  position: relative;
+  z-index: 10; /* Увеличаване на z-index, за да е винаги видим над футър пейзажа */
+  backdrop-filter: blur(5px);
+  margin-top: auto; /* Да бъде винаги в долната част на футъра */
+}
+
+.footer-link.light-text {
+  color: #FFF;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Добавяне на сянка за по-добра видимост */
+}
+
+.footer-link.light-text:hover {
+  color: #FFDB9D;
+  opacity: 1;
+}
+
+.footer-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Стилове за карусела с пейзажи */
+.landscape-carousel {
+  margin: 80px auto 60px;
+  width: 100%;
+  padding: 0 15px;
+  max-width: 1200px;
+}
+
+.carousel-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.carousel-title h2 {
+  font-size: 3.2rem;
+  color: #3E2723;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-title p {
+  font-size: 1.2rem;
+  color: #5D4037;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.carousel-container {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  border: 10px solid;
+  border-image: linear-gradient(45deg, #3E2723, #8D6E63, #3E2723) 1;
+  background-clip: padding-box;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 5s ease; /* Медлен зуум ефект */
+}
+
+.carousel-slide:hover .carousel-image {
+  transform: scale(1.05);
+}
+
+.carousel-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 50%);
+  pointer-events: none;
+}
+
+.wooden-frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  z-index: 2;
+  border: 1px solid rgba(62, 39, 35, 0.3);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 3;
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.carousel-indicator.active {
+  background-color: #FFF;
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #3E2723;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  color: #FFF;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.carousel-button::before {
+  background-color: rgba(62, 39, 35, 0.8);
+}
+
+.carousel-button:hover {
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-button-prev {
+  left: 20px;
+}
+
+.carousel-button-next {
+  right: 20px;
+}
+
+/* Адаптивен дизайн за карусела */
+@media (max-width: 992px) {
+  .carousel-container {
+    height: 400px;
+  }
+  
+  .carousel-title h2 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 350px;
+  }
+  
+  .carousel-title h2 {
+    font-size: 2.5rem;
+  }
+  
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-container {
+    height: 300px;
+    border-width: 6px;
+  }
+  
+  .carousel-title h2 {
+    font-size: 2.2rem;
+  }
+  
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .carousel-indicator {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .carousel-indicator.active {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Стилове за секция "За нас" */
+.about-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  opacity: 0.1;
+}
+
+.wooden-section {
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(62, 39, 35, 0.2);
+  position: relative;
+}
+
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #3E2723;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.about-text {
+  flex: 1 1 400px;
+  text-align: left;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #4A3328;
+  font-size: 1.1rem;
+}
+
+.about-stats {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(62, 39, 35, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #5D4037;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #6D4C41;
+}
+
+/* Стилове за формата за абонамент */
+.subscription-form {
+  margin: 3rem 0;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  background-color: rgba(255, 250, 240, 0.95);
+  isolation: isolate;
+  z-index: 1;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.subscription-form::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  opacity: 0.15;
+  z-index: -1;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.subscription-form h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: #3E2723;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.subscription-form p {
+  margin-bottom: 1.5rem;
+  color: #4A3328;
+}
+
+.form-container {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.email-input {
+  flex: 1 1 300px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #A1887F;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #3E2723;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.email-input:focus {
+  outline: none;
+  border-color: #5D4037;
+  box-shadow: 0 0 0 2px rgba(93, 64, 55, 0.2);
+}
+
+.subscribe-button {
+  flex: 0 1 150px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Разширени стилове за футъра */
+.footer-content {
+  z-index: 10;
+  position: relative;
+  padding: 2rem;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-column {
+  flex: 1 1 250px;
+  text-align: left;
+}
+
+.footer-column h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-item {
+  display: block;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  font-size: 0.95rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 0.25rem 0;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: #FFDB9D;
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFDB9D;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.copyright {
+  margin-top: 1rem;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.small-text {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+/* Медиа заявки за по-малки екрани */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .about-stats {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .stat-item {
+    flex: 1 1 auto;
+  }
+  
+  .subscription-form {
+    padding: 1.5rem;
+  }
+  
+  .form-container {
+    flex-direction: column;
+  }
+  
+  .footer-columns {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .footer-column {
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .subscription-form h3 {
+    font-size: 1.75rem;
+  }
+  
+  .about-stats {
+    flex-direction: column;
+  }
+  
+  .stat-item {
+    padding: 0.75rem;
+  }
+  
+  .stat-number {
+    font-size: 1.75rem;
+  }
+}
+
+.subscription-form-content {
+  position: relative;
+  z-index: 2;
+}

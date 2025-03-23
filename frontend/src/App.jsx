@@ -23,6 +23,12 @@ const carouselImages = [
   "https://images.unsplash.com/photo-1682687220208-22d7a2543e88?q=80&w=2070"  // Планини с цветя
 ];
 
+// Икони за хедъра
+const forestIcon = "/images/icons/logo/forest-icon.png";
+const mountainIcon = "/images/icons/logo/mountain-icon.png";
+const woodIcon = "/images/icons/logo/wood-icon.png";
+const lakeIcon = "/images/icons/logo/lake-icon.png";
+
 // Анимационни варианти за Framer Motion
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -280,6 +286,42 @@ function App() {
             >
               Насладете се на невероятни гледки от нашия уютен кът, където прозорците разкриват спиращи дъха пейзажи от цял свят.
             </motion.p>
+
+            <motion.div
+              className="header-icons"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <motion.img 
+                src={forestIcon} 
+                alt="Гори" 
+                className="header-icon"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+              />
+              <motion.img 
+                src={mountainIcon} 
+                alt="Планини" 
+                className="header-icon"
+                whileHover={{ scale: 1.2, rotate: -5 }}
+                whileTap={{ scale: 0.95 }}
+              />
+              <motion.img 
+                src={woodIcon} 
+                alt="Дървен материал" 
+                className="header-icon"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+              />
+              <motion.img 
+                src={lakeIcon} 
+                alt="Езера" 
+                className="header-icon"
+                whileHover={{ scale: 1.2, rotate: -5 }}
+                whileTap={{ scale: 0.95 }}
+              />
+            </motion.div>
           </motion.div>
           
           <motion.div 
@@ -290,7 +332,7 @@ function App() {
             initial="hidden"
             animate={isInView.features ? "visible" : "hidden"}
           >
-            <h2 className="section-title">Пейзажна Красота</h2>
+            <h2 className="section-title">Неземно Красива</h2>
             <div className="features"
               variants={staggerContainer}
               initial="hidden"

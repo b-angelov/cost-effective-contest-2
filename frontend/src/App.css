@@ -333,7 +333,7 @@ h1, h2.section-title {
 }
 
 h1 {
-  font-size: 4.8rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 15px;
   color: #2A1A12;
@@ -1695,4 +1695,50 @@ blockquote footer {
 
 .close-button:hover {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Стилове за иконите в горната част */
+.header-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.header-icon:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@media (max-width: 768px) {
+  .header-icons {
+    gap: 15px;
+  }
+  
+  .header-icon {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-icons {
+    gap: 10px;
+  }
+  
+  .header-icon {
+    width: 40px;
+    height: 40px;
+  }
 }

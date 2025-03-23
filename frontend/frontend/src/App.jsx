@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import './App.css'
+import './styles/App.css'
 import Article from './components/Article'
-import articleData from './constants/articleData'
 import ArticlesList from './components/ArticlesList'
+import articleData from './constants/articleData'
 
 // Импортиране на изображения за пейзажи през прозорци
 const woodPlanksBackground = "https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?q=80&w=2070"; // Дървен фон
@@ -61,7 +61,6 @@ function App() {
   const [email, setEmail] = useState('');
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [showArticlesList, setShowArticlesList] = useState(false);
-  const [subscriptionStatus, setSubscriptionStatus] = useState(null); // 'success', 'error', или null
   
   // Refs за проследяване на видимостта
   const featuresRef = useRef(null);
@@ -86,36 +85,10 @@ function App() {
   const closeArticle = () => {
     setSelectedArticle(null);
   };
-  
+
   // Функция за показване/скриване на списъка със статии
   const toggleArticlesList = () => {
     setShowArticlesList(!showArticlesList);
-  };
-  
-  // Функция за абониране за бюлетин
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    
-    // Проверка за валиден имейл адрес
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setSubscriptionStatus('error');
-      return;
-    }
-    
-    // Тук ще симулираме заявка към сървъра за изпращане на имейл
-    // В реален случай тук ще има API заявка към бекенда
-    setTimeout(() => {
-      // Симулираме успешен отговор
-      setSubscriptionStatus('success');
-      // Изчистваме полето след успешен абонамент
-      setEmail('');
-      
-      // Автоматично изчистваме съобщението след 5 секунди
-      setTimeout(() => {
-        setSubscriptionStatus(null);
-      }, 5000);
-    }, 1500);
   };
   
   // Ефект за автоматично сменяне на изображенията в карусела
@@ -286,9 +259,6 @@ function App() {
             ref={featuresRef}
             id="articles-section"
             className="features-section"
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isInView.features ? "visible" : "hidden"}
           >
             <h2 className="section-title">Пейзажна Красота</h2>
             <div className="features"
@@ -296,65 +266,65 @@ function App() {
               initial="hidden"
               animate={isInView.features ? "visible" : "hidden"}
             >
-              <motion.div 
-                className="feature wooden-feature" 
-                variants={fadeInUp} 
-                style={{ backgroundImage: `url(${woodPlanksLight})` }}
-                onClick={() => openArticle('mountains')}
-              >
-                <div className="feature-icon-container">
-                  <motion.div 
-                    className="feature-icon"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    🏔️
-                  </motion.div>
-                  <div className="feature-icon-bg"></div>
-                </div>
-                <h3>Планински Красоти</h3>
-                <p>Спиращи дъха планински вериги и върхове, покрити със сняг през зимата и с буйна зеленина през夏天</p>
-              </motion.div>
-              
-              <motion.div 
-                className="feature wooden-feature" 
-                variants={fadeInUp} 
-                style={{ backgroundImage: `url(${woodPlanksLight})` }}
-                onClick={() => openArticle('lakes')}
-              >
-                <div className="feature-icon-container">
-                  <motion.div 
-                    className="feature-icon"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    🌊
-                  </motion.div>
-                  <div className="feature-icon-bg"></div>
-                </div>
-                <h3>Кристални Езера</h3>
-                <p>Прозрачни води, отразяващи небето, заобиколени от величествени планини и пищна растителност</p>
-              </motion.div>
-              
-              <motion.div 
-                className="feature wooden-feature" 
-                variants={fadeInUp} 
-                style={{ backgroundImage: `url(${woodPlanksLight})` }}
-                onClick={() => openArticle('forests')}
-              >
-                <div className="feature-icon-container">
-                  <motion.div 
-                    className="feature-icon"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    🌲
-                  </motion.div>
-                  <div className="feature-icon-bg"></div>
-                </div>
-                <h3>Вековни Гори</h3>
-                <p>Величествени гори с вековни дървета, създаващи усещане за спокойствие и връзка с природата</p>
-              </motion.div>
+            <motion.div 
+              className="feature wooden-feature" 
+              variants={fadeInUp} 
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+              onClick={() => openArticle('mountains')}
+            >
+              <div className="feature-icon-container">
+                <motion.div 
+                  className="feature-icon"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  🏔️
+                </motion.div>
+                <div className="feature-icon-bg"></div>
+              </div>
+              <h3>Планински Красоти</h3>
+              <p>Спиращи дъха планински вериги и върхове, покрити със сняг през зимата и с буйна зеленина през夏天</p>
+            </motion.div>
+            
+            <motion.div 
+              className="feature wooden-feature" 
+              variants={fadeInUp} 
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+              onClick={() => openArticle('lakes')}
+            >
+              <div className="feature-icon-container">
+                <motion.div 
+                  className="feature-icon"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  🌊
+                </motion.div>
+                <div className="feature-icon-bg"></div>
+              </div>
+              <h3>Кристални Езера</h3>
+              <p>Прозрачни води, отразяващи небето, заобиколени от величествени планини и пищна растителност</p>
+            </motion.div>
+            
+            <motion.div 
+              className="feature wooden-feature" 
+              variants={fadeInUp} 
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+              onClick={() => openArticle('forests')}
+            >
+              <div className="feature-icon-container">
+                <motion.div 
+                  className="feature-icon"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  🌲
+                </motion.div>
+                <div className="feature-icon-bg"></div>
+              </div>
+              <h3>Вековни Гори</h3>
+              <p>Величествени гори с вековни дървета, създаващи усещане за спокойствие и връзка с природата</p>
+            </motion.div>
             </div>
           </motion.div>
           
@@ -370,11 +340,6 @@ function App() {
               onClick={(e) => {
                 e.preventDefault();
                 toggleArticlesList();
-                // Малко анимация за скролиране
-                const featuresSection = document.querySelector('.features-section');
-                if (featuresSection) {
-                  featuresSection.scrollIntoView({ behavior: 'smooth' });
-                }
               }}
             >
               <span className="button-text">Открийте Красотата</span>
@@ -470,21 +435,10 @@ function App() {
                   style={{ backgroundImage: `url(${woodGrainTexture})` }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={handleSubscribe}
                 >
                   <span className="button-text">Абонирай се</span>
                 </motion.button>
               </div>
-              {subscriptionStatus === 'success' && (
-                <div className="subscription-message success">
-                  Благодарим за абонамента! Скоро ще получите първото си писмо.
-                </div>
-              )}
-              {subscriptionStatus === 'error' && (
-                <div className="subscription-message error">
-                  Моля, въведете валиден имейл адрес.
-                </div>
-              )}
             </div>
           </div>
         </motion.div>
@@ -591,6 +545,31 @@ function App() {
         </div>
       </footer>
       
+      {/* Модален прозорец за списъка със статии */}
+      <AnimatePresence>
+        {showArticlesList && (
+          <motion.div 
+            className="articles-list-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={toggleArticlesList}
+          >
+            <motion.div 
+              className="articles-list-modal wooden-section"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{ backgroundImage: `url(${woodPlanksLight})` }}
+            >
+              <button className="close-button" onClick={toggleArticlesList}>×</button>
+              <ArticlesList articles={articleData} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
       {/* Модален прозорец за статиите */}
       <AnimatePresence>
         {selectedArticle && (
@@ -600,31 +579,8 @@ function App() {
           />
         )}
       </AnimatePresence>
-
-      {/* Модален прозорец със списък статии */}
-      <AnimatePresence>
-        {showArticlesList && (
-          <motion.div
-            className="articles-list-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="articles-list-overlay" onClick={toggleArticlesList}></div>
-            <motion.div
-              className="articles-list-content"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-            >
-              <button className="close-button" onClick={toggleArticlesList}>×</button>
-              <ArticlesList articles={articleData} />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
 
-export default App
+export default App 

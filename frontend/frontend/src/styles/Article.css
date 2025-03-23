@@ -1,0 +1,210 @@
+.article-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.article-container {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  background-color: rgba(255, 250, 240, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+.article-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  opacity: 0.15;
+  z-index: -1;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.article-content {
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.article-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid rgba(62, 39, 35, 0.2);
+  padding-bottom: 1rem;
+}
+
+.article-icon {
+  font-size: 3rem;
+  margin-right: 1rem;
+}
+
+.article-header h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #3E2723;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.article-body {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.article-body p {
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  color: #4A3328;
+  font-size: 1.1rem;
+}
+
+.article-image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border: 8px solid;
+  border-image: linear-gradient(45deg, #3E2723, #8D6E63, #3E2723) 1;
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(62, 39, 35, 0.15);
+  font-style: italic;
+  color: #6D4C41;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(62, 39, 35, 0.8);
+  color: #FFF;
+  border: none;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background-color: rgba(93, 64, 55, 1);
+  transform: rotate(90deg);
+}
+
+.article-external-link {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.external-link-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 25px;
+  background-color: rgba(62, 39, 35, 0.9);
+  color: #FFF;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 2px solid transparent;
+}
+
+.external-link-button:hover {
+  background-color: #3E2723;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.external-link-icon {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.external-link-button:hover .external-link-icon {
+  transform: translateX(3px) translateY(-3px);
+}
+
+/* Адаптивен дизайн */
+@media (max-width: 768px) {
+  .article-content {
+    padding: 1.5rem;
+  }
+  
+  .article-header h2 {
+    font-size: 2rem;
+  }
+  
+  .article-icon {
+    font-size: 2.5rem;
+  }
+  
+  .article-image-container {
+    border-width: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .article-container {
+    width: 95%;
+  }
+  
+  .article-content {
+    padding: 1rem;
+  }
+  
+  .article-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .article-icon {
+    font-size: 2rem;
+  }
+  
+  .article-body p {
+    font-size: 1rem;
+  }
+  
+  .article-image-container {
+    border-width: 4px;
+    margin: 1rem 0;
+  }
+} 

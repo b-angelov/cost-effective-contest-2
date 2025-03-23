@@ -1,0 +1,958 @@
+/* Стилове за модалния прозорец със списъка със статии */
+.articles-list-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.articles-list-modal {
+  position: relative;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  border: 8px solid #785128;
+  background-image: url('https://images.unsplash.com/photo-1599837789170-42a6a206d9a3?q=80&w=1200');
+  background-size: cover;
+  background-position: center;
+  color: #333;
+}
+
+.articles-list-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: -1;
+  border-radius: 5px;
+}
+
+.articles-list-modal .close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: #6b4423;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.articles-list-modal .close-button:hover {
+  background-color: #8c5a30;
+  transform: scale(1.1);
+}
+
+/* Основен контейнер */
+.landing-page {
+  position: relative;
+  overflow-x: hidden;
+  background-color: #f0e6d2;
+}
+
+/* Дървен фон */
+.wood-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.wood-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(1.2);
+}
+
+.wood-texture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+  z-index: 1;
+}
+
+/* Прозорци с изглед към природни пейзажи */
+.window-view {
+  position: fixed;
+  z-index: 0;
+  transition: transform 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.window-view.left {
+  top: 15%;
+  left: 2%;
+  width: 300px;
+  height: 400px;
+}
+
+.window-view.right {
+  top: 18%;
+  right: 2%;
+  width: 300px;
+  height: 400px;
+}
+
+.window-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.window-landscape {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  transition: transform 0.5s ease;
+}
+
+.window-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.window-reflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.window-hover .window-landscape {
+  transform: scale(1.05);
+}
+
+.window-hover .window-reflection {
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .window-view {
+    position: absolute;
+    width: 250px;
+    height: 300px;
+  }
+  
+  .window-view.left {
+    left: 0;
+  }
+  
+  .window-view.right {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .window-view {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    margin: 10px auto;
+    display: none;
+  }
+}
+
+/* Дървена арка и основен контейнер за съдържание */
+.wooden-arch {
+  position: relative;
+  margin: 50px auto;
+  max-width: 1200px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.arch-top {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  overflow: hidden;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.wooden-edge {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.wooden-edge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(70, 40, 20, 0.2);
+  z-index: 1;
+}
+
+.content-container {
+  padding: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Заглавна секция */
+.header-content {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #44281d;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content h2 {
+  font-size: 1.8rem;
+  color: #6b4423;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.lead-text {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #555;
+}
+
+.light-text {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Секция с предложения */
+.features-section {
+  padding: 40px 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #44281d;
+  margin-bottom: 40px;
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 3px;
+  background-color: #8c5a30;
+  margin: 15px auto 0;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.feature {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.wooden-feature {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-position: center;
+}
+
+.wooden-feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: -1;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+.feature-icon {
+  position: relative;
+  font-size: 3rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  color: #44281d;
+  margin-bottom: 15px;
+}
+
+.feature p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* CTA секция */
+.cta-section {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.cta-button {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.wooden-button {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.wooden-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(70, 40, 20, 0.6);
+  z-index: 1;
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-right: 10px;
+}
+
+.button-arrow {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* Отзиви */
+.testimonials {
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+  max-width: 800px;
+}
+
+.wooden-testimonial {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.wooden-testimonial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.testimonials blockquote {
+  position: relative;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #44281d;
+  font-style: italic;
+  text-align: center;
+  z-index: 1;
+  margin: 0;
+  padding: 0 40px;
+}
+
+.testimonials blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 4rem;
+  color: #8c5a30;
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.testimonials blockquote::after {
+  content: '"';
+  position: absolute;
+  bottom: -60px;
+  right: 0;
+  font-size: 4rem;
+  color: #8c5a30;
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.testimonials blockquote footer {
+  font-style: normal;
+  font-size: 1rem;
+  color: #6b4423;
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* За нас секция */
+.about-section {
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.wooden-section {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.wooden-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.about-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.about-text {
+  flex: 2;
+  min-width: 300px;
+}
+
+.about-text p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #44281d;
+}
+
+.about-stats {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #8c5a30;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Форма за абонамент */
+.subscription-form {
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+  text-align: center;
+}
+
+.subscription-form-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subscription-form h3 {
+  font-size: 1.8rem;
+  color: #44281d;
+  margin-bottom: 15px;
+}
+
+.subscription-form p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.form-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.email-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.subscribe-button {
+  padding: 15px 25px;
+}
+
+/* Футър */
+.main-footer {
+  position: relative;
+  padding-top: 100px;
+  background-color: #3a2313;
+  color: white;
+}
+
+.panoramic-view {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-window {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.footer-window-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 15px solid #5a3921;
+  border-bottom: 15px solid #5a3921;
+}
+
+.footer-landscape {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+}
+
+.footer-carousel {
+  padding: 40px 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.carousel-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 1000px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+.wooden-frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 15px solid transparent;
+  box-shadow: inset 0 0 0 15px rgba(90, 57, 33, 0.9);
+  pointer-events: none;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button-prev {
+  left: 20px;
+}
+
+.carousel-button-next {
+  right: 20px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-indicator.active {
+  background-color: white;
+}
+
+.footer-content {
+  padding: 60px 40px 40px;
+  background-color: #3a2313;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-column h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #8c5a30;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-link {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #8c5a30;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: block;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-link {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #8c5a30;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.small-text {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+/* Респонсивност */
+@media (max-width: 1024px) {
+  .header-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .header-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .lead-text {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .carousel-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 20px;
+  }
+  
+  .header-content h1 {
+    font-size: 2rem;
+  }
+  
+  .header-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .lead-text {
+    font-size: 1rem;
+  }
+  
+  .feature {
+    min-width: 100%;
+  }
+  
+  .about-content {
+    flex-direction: column;
+  }
+  
+  .footer-carousel {
+    padding: 20px 10px;
+  }
+  
+  .carousel-container {
+    height: 250px;
+  }
+  
+  .footer-content {
+    padding: 40px 20px 20px;
+  }
+  
+  .articles-list-modal {
+    padding: 20px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .carousel-container {
+    height: 200px;
+  }
+  
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .wooden-section, .testimonials, .subscription-form, .about-section {
+    padding: 30px 20px;
+  }
+} 
